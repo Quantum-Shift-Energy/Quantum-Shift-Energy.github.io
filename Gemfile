@@ -1,6 +1,9 @@
 source "https://rubygems.org"
 
-gem 'jekyll-environment-variables'
-gem 'jekyll-paginate'
-gem "webrick", "~> 1.7"
-gem "jekyll", "~> 4.3"
+# Should be included in Jekyll but depending on the version Jekyll and Ruby version, it may not be included
+gem 'webrick'
+gem 'kramdown-parser-gfm'
+
+# For github pages compatibility
+# gem 'github-pages', group: :jekyll_plugins
+gemspec

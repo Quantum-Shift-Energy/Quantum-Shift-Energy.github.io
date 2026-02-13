@@ -1,6 +1,8 @@
 ---
 layout: categories
 title: Categories
-body_classes: page-categories
-permalink: "/blog/categories/"
+permalink: /categories/
+hide: true
+excluded: true
+showCounts: false
 ---
