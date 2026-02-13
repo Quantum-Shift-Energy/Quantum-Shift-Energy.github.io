@@ -1,28 +1,52 @@
 ---
 layout: default
 ---
-<div class="home">
-    <style scoped>
-        {% assign image = site.header_feature_image | relative_url | split: '.' %}
-        .call-out_img {
-            background-image: url('{{ image | join: '.' }}');
-        }
-        {% if site.header_feature_image_responsive %}
-        @media screen and (max-width: 768px) {
-            .call-out_img {
-                background-image: url('{{ image[0] | append: '-medium.' | append: image[1] | default: image}}');
-            }
-        }
-        @media screen and (max-width: 576px) {
-            .call-out_img {
-                background-image: url('{{ image[0] | append: '-small.' | append: image[1] }}');
-            }
-        }
-        {% endif %}
-    </style>
-    <div id="main" class="call-out call-out_img">
-        <h1> {{ site.header_text | default: "Change <code>header_text</code> in <code>_config.yml</code>"}} </h1>
-    </div>
-    {% capture _blog %}{% include blog/blog.liquid %}{% endcapture %}
-    {{ _blog | split: " " | join: " "}}
+
+<div class="home-index">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <h1 class="site-title">{{ site.title }}</h1>
+    <p class="tagline">{{ site.description }}</p>
+  </header>
+
+  {% assign featured = site.posts.first %}
+
+  <!-- Featured article -->
+  <section class="featured">
+    <h2 class="section-label">Latest Essay</h2>
+
+    <article>
+      <h3>
+        <a href="{{ featured.url | relative_url }}">
+          {{ featured.title }}
+        </a>
+      </h3>
+
+      <div class="meta">
+        {{ featured.date | date: "%B %d, %Y" }}
+      </div>
+
+      <p class="excerpt">
+        {{ featured.excerpt | strip_html | truncate: 260 }}
+      </p>
+    </article>
+  </section>
+
+  <hr />
+
+  <!-- Recent posts -->
+  <section class="recent">
+    <h2 class="section-label">Recent Writing</h2>
+
+    <ul class="post-list">
+      {% for post in site.posts offset:1 limit:10 %}
+      <li>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
 </div>
