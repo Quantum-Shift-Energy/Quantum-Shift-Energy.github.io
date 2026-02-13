@@ -95,3 +95,6 @@ exclude:
   - "assets/node_modules/*"
   - ".github/*"
 
+search: false
+portfolio: false
+
